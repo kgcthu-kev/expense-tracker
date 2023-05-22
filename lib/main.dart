@@ -4,9 +4,30 @@ import 'package:flutter/material.dart';
 var kColorScheme =
     ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 96, 59, 181));
 
+var kDarkColorScheme = ColorScheme.fromSeed(
+    seedColor: const Color.fromARGB(255, 5, 99, 125),
+    brightness: Brightness.dark);
+
 void main() {
   runApp(MaterialApp(
-    home: const Expenses(),
+    darkTheme: ThemeData.dark().copyWith(
+      useMaterial3: true,
+      colorScheme: kDarkColorScheme,
+      cardTheme: const CardTheme().copyWith(
+          color: kDarkColorScheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8)),
+      appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kDarkColorScheme.primaryContainer,
+          foregroundColor: kDarkColorScheme.onPrimaryContainer),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: kDarkColorScheme.primaryContainer)),
+      // textTheme: ThemeData().textTheme.copyWith(
+      //         titleLarge: const TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       fontSize: 16,
+      //     ))
+    ),
     theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
@@ -25,5 +46,6 @@ void main() {
               color: kColorScheme.onSecondaryContainer,
               fontSize: 16,
             ))),
+    home: const Expenses(),
   ));
 }

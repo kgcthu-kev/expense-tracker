@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:expense_tracker/models/expense.dart' as expenseModel;
+import 'package:expense_tracker/models/expense.dart' as expense_model;
 
 DateFormat formatter = DateFormat.yMd();
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
-  final void Function(expenseModel.Expense expense) onAddExpense;
+  final void Function(expense_model.Expense expense) onAddExpense;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -16,7 +16,7 @@ class _NewExpenseState extends State<NewExpense> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
   DateTime? _selectedDate;
-  expenseModel.Category _seletedCategory = expenseModel.Category.leisure;
+  expense_model.Category _seletedCategory = expense_model.Category.leisure;
 
   void _presentDatePicker() async {
     final pickedDate = await showDatePicker(
@@ -50,7 +50,7 @@ class _NewExpenseState extends State<NewExpense> {
       return;
     }
     // make new expense list
-    final newExpense = expenseModel.Expense(
+    final newExpense = expense_model.Expense(
       title: _titleController.text,
       amount: enteredAmount,
       category: _seletedCategory,
@@ -116,7 +116,7 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               DropdownButton(
                 value: _seletedCategory,
-                items: expenseModel.Category.values
+                items: expense_model.Category.values
                     .map((category) => DropdownMenuItem(
                           value: category,
                           child: Text(category.name.toUpperCase()),
